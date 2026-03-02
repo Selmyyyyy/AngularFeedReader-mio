@@ -24,8 +24,13 @@ export class NewFeedComponent {
 
     const newFeed = this.newFeedForm.value as Feed;
 
-    this.firestore.addFeed(newFeed);
-    
+    this.firestore.addFeed(newFeed).then(() => {
+      alert('Feed added successfully!');
+      this.newFeedForm.reset();
+    }).catch((err) => {
+      alert('Error adding feed: ' + err);
+    });
+
   }
 
 }
